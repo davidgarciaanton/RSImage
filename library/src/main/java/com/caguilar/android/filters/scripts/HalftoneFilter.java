@@ -17,7 +17,7 @@
 package com.caguilar.android.filters.scripts;
 
 import android.content.res.Resources;
-import android.renderscript.RenderScript;
+import android.support.v8.renderscript.RenderScript;
 
 /**
  * Created with IntelliJ IDEA.

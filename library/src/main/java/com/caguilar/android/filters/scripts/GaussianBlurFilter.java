@@ -17,11 +17,11 @@
 package com.caguilar.android.filters.scripts;
 
 import android.content.res.Resources;
-import android.renderscript.Allocation;
-import android.renderscript.Element;
-import android.renderscript.Float2;
-import android.renderscript.RenderScript;
-import android.renderscript.Script;
+import android.support.v8.renderscript.Allocation;
+import android.support.v8.renderscript.Element;
+import android.support.v8.renderscript.Float2;
+import android.support.v8.renderscript.RenderScript;
+import android.support.v8.renderscript.Script;
 
 /**
  * Created with IntelliJ IDEA.

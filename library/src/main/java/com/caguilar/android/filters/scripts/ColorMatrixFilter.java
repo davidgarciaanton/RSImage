@@ -17,8 +17,8 @@
 package com.caguilar.android.filters.scripts;
 
 import android.content.res.Resources;
-import android.renderscript.Matrix4f;
-import android.renderscript.RenderScript;
+import android.support.v8.renderscript.Matrix4f;
+import android.support.v8.renderscript.RenderScript;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,25 +26,24 @@ import android.renderscript.RenderScript;
  * Date: 11/18/12
  * Time: 11:17 AM
  */
-public class SepiaFilter extends ColorMatrixFilter {
-    public SepiaFilter(RenderScript rs, Resources resources, int id) {
+public class ColorMatrixFilter extends ScriptC_colormatrixfilter {
+    public ColorMatrixFilter(RenderScript rs, Resources resources, int id) {
         super(rs, resources, id);
         set_intensityValue(1.0f);
         Matrix4f colorMatrix = new Matrix4f();
-        colorMatrix.set(0,0,0.3588f);
-        colorMatrix.set(1,0,0.7044f);
-        colorMatrix.set(2,0,0.1368f);
+        colorMatrix.set(0,0,1.0f);
+        colorMatrix.set(1,0,0.0f);
+        colorMatrix.set(2,0,0.0f);
         colorMatrix.set(3,0,0.0f);
 
-
-        colorMatrix.set(0,1,0.2990f);
-        colorMatrix.set(1,1,0.5870f);
-        colorMatrix.set(2,1,0.1140f);
+        colorMatrix.set(0,1,0.0f);
+        colorMatrix.set(1,1,1.0f);
+        colorMatrix.set(2,1,0.0f);
         colorMatrix.set(3,1,0.0f);
 
-        colorMatrix.set(0,2,0.2392f);
-        colorMatrix.set(1,2,0.4696f);
-        colorMatrix.set(2,2,0.0912f);
+        colorMatrix.set(0,2,0.0f);
+        colorMatrix.set(1,2,0.0f);
+        colorMatrix.set(2,2,1.0f);
         colorMatrix.set(3,2,0.0f);
 
         colorMatrix.set(0,3,0.0f);

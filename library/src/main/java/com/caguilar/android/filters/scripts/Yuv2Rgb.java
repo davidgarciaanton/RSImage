@@ -17,9 +17,9 @@
 package com.caguilar.android.filters.scripts;
 
 import android.content.res.Resources;
-import android.renderscript.Allocation;
-import android.renderscript.Element;
-import android.renderscript.RenderScript;
+import android.support.v8.renderscript.Allocation;
+import android.support.v8.renderscript.Element;
+import android.support.v8.renderscript.RenderScript;
 
 public class Yuv2Rgb extends ScriptC_yuv2rgb {
     RenderScript mRS;

@@ -21,26 +21,26 @@ int imageWidth;
 int imageHeight;
 rs_allocation yuvData;
 
-void root(const uchar4 *v_in, uchar4 *v_out,const void *userData, uint32_t xPos, uint32_t yPos) {
-    float r,g,b,y,u,v;
-    int index = yPos*imageWidth + xPos;
+void root(const uchar4 *v_in, uchar4 *v_out,const void *userData, uint32_t x, uint32_t y) {
+    float r,g,b,Y,U,V;
+    int index = y*imageWidth + x;
     int size = imageWidth*imageHeight;
-    int otherIndex = ((yPos/2)*(imageWidth/2) + (xPos/2))*2 + size;
+    int otherIndex = ((y/2)*(imageWidth/2) + (x/2))*2 + size;
 
 
     uchar *temp = (uchar *)rsGetElementAt(yuvData,index);
-    y = *temp/255.0f;
+    Y = *temp/255.0f;
     temp = (uchar *)rsGetElementAt(yuvData,otherIndex+1);
-    u = *temp/255.0f;
+    U = *temp/255.0f;
     temp = (uchar *)rsGetElementAt(yuvData,otherIndex);
-    v = *temp/255.0f;
+    V = *temp/255.0f;
 
-    u -= 0.5f;
-    v -= 0.5f;
-    y=1.1643*(y-0.0625);
-    r=y+1.5958*v;
-    g=y-0.39173*u-0.81290*v;
-    b=y+2.017*u;
+    U -= 0.5f;
+    V -= 0.5f;
+    Y=1.1643*(Y-0.0625);
+    r=Y+1.5958*V;
+    g=Y-0.39173*U-0.81290*V;
+    b=Y+2.017*U;
 
     float3 color = {r,g,b};
     color = clamp(color,0.0f,1.0f);

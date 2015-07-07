@@ -17,10 +17,10 @@
 package com.caguilar.android.filters.scripts;
 
 import android.content.res.Resources;
-import android.renderscript.Allocation;
-import android.renderscript.Float2;
-import android.renderscript.RenderScript;
-import android.renderscript.Script;
+import android.support.v8.renderscript.Allocation;
+import android.support.v8.renderscript.Float2;
+import android.support.v8.renderscript.RenderScript;
+import android.support.v8.renderscript.Script;
 import com.caguilar.android.filters.R;
 
 /**
@@ -29,28 +29,27 @@ import com.caguilar.android.filters.R;
  * Date: 12/4/12
  * Time: 3:02 PM
  */
-public class SelectiveGaussianBlurFilter extends GaussianBlurFilter {
+public class TiltShiftGaussianBlurFilter extends GaussianBlurFilter {
 
-    ScriptC_selectivefilter mScript;
-    public SelectiveGaussianBlurFilter(RenderScript rs) {
+    ScriptC_tiltshiftfilter mScript;
+    public TiltShiftGaussianBlurFilter(RenderScript rs) {
         super(rs);
-        mScript = new ScriptC_selectivefilter(rs);
+        mScript = new ScriptC_tiltshiftfilter(rs);
         init();
     }
 
-    public SelectiveGaussianBlurFilter(RenderScript rs, Resources resources, int id) {
+    public TiltShiftGaussianBlurFilter(RenderScript rs, Resources resources, int id) {
         super(rs, resources, id);
-        mScript = new ScriptC_selectivefilter(rs, resources, R.raw.selectivefilter);
+        mScript = new ScriptC_tiltshiftfilter(rs, resources, R.raw.tiltshiftfilter);
         init();
     }
 
     public void init(){
-
         setBlurSize(2.0f);
-        mScript.set_aspectRatio(0.75f);
-        mScript.set_excludeBlurSize(30.0f/320.0f);
-        mScript.set_excludeCircleRadius(60.0f/320.0f);
-        mScript.set_excludeCirclePoint(new Float2(0.5f, 0.5f));
+        mScript.set_bottomFocusLevel(0.6f);
+        mScript.set_direction(1);
+        mScript.set_focusFallOffRate(0.2f);
+        mScript.set_topFocusLevel(0.4f);
     }
 
 
@@ -72,16 +71,16 @@ public class SelectiveGaussianBlurFilter extends GaussianBlurFilter {
         mScript.invoke_filter(mScript,mInAllocation, mOutAllocation);
     }
 
-    public void set_excludeCirclePoint(Float2 ratio){
-        mScript.set_excludeCirclePoint(ratio);
+    public void set_topFocusLevel(float bottomLevel){
+        mScript.set_topFocusLevel(bottomLevel);
     }
-    public void set_excludeCircleRadius(float ratio){
-        mScript.set_excludeCircleRadius(ratio);
+    public void set_focusFallOffRate(float bottomLevel){
+        mScript.set_focusFallOffRate(bottomLevel);
     }
-    public void set_excludeBlurSize(float ratio){
-        mScript.set_excludeBlurSize(ratio);
+    public void set_direction(int bottomLevel){
+        mScript.set_direction(bottomLevel);
     }
-    public void set_aspectRatio(float ratio){
-        mScript.set_aspectRatio(ratio);
+    public void set_bottomFocusLevel(float bottomLevel){
+        mScript.set_bottomFocusLevel(bottomLevel);
     }
 }
